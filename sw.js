@@ -1,4 +1,4 @@
-const CACHE_NAME = "followgrow-v2";
+const CACHE_NAME = "followgrow-v3";
 
 self.addEventListener("install", event => {
   event.waitUntil(
