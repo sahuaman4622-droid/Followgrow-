@@ -54,4 +54,6 @@ function downloadApp() {
     alert("Chrome menu (⋮) खोलकर Install app चुनें");
   }
   }let tapCount=0,tapTimer=null;document.getElementById('logoTap').addEventListener('click',function(){tapCount++;clearTimeout(tapTimer);if(tapCount===5){tapCount=0;admin();return}tapTimer=setTimeout(()=>tapCount=0,1400)});render();
-</script></body></html>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js");
+}script></body></html>
