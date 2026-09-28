@@ -52,7 +52,7 @@ function downloadApp() {
     });
   } else {
     
-  alert("इस फोन में Chrome के ⋮ मेनू से Install app चुनें");
+  alert("Chrome menu (⋮) खोलकर Install app चुनें");
   }let tapCount=0,tapTimer=null;document.getElementById('logoTap').addEventListener('click',function(){tapCount++;clearTimeout(tapTimer);if(tapCount===5){tapCount=0;admin();return}tapTimer=setTimeout(()=>tapCount=0,1400)});render();
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./sw.js");
