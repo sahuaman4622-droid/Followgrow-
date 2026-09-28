@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FollowGrow Help</title>
+
+<style>
+body{
+  font-family:Arial,sans-serif;
+  margin:0;
+  background:#f6f5fb;
+  color:#222;
+}
+.wrap{
+  max-width:600px;
+  margin:auto;
+  padding:16px;
+}
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:0 2px 10px #0001;
+}
+h1{
+  font-size:23px;
+  margin:0 0 8px;
+}
+h2{
+  font-size:18px;
+  margin:0 0 12px;
+}
+.faq{
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+  line-height:1.5;
+}
+.faq:last-child{
+  border-bottom:0;
+}
+textarea{
+  width:100%;
+  min-height:110px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  padding:10px;
+  box-sizing:border-box;
+  font-size:15px;
+}
+button{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:#8b85a8;
+  color:#fff;
+  font-size:16px;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<div class="card">
+<h1>👋 FollowGrow Help Center</h1>
+<p>हम आपकी मदद के लिए यहाँ हैं।</p>
+</div>
+
+<div class="card">
+<h2>❓ अक्सर पूछे जाने वाले सवाल</h2>
+
+<div class="faq">
+<b>▶ Order कैसे करें?</b><br>
+अपनी पसंद की service चुनें, details भरें और order place करें।
+</div>
+
+<div class="faq">
+<b>▶ Payment कैसे करें?</b><br>
+Payment page पर उपलब्ध payment option से भुगतान करें।
+</div>
+
+<div class="faq">
+<b>▶ Order की स्थिति कहाँ देखें?</b><br>
+Orders section खोलकर अपना order status देखें।
+</div>
+
+<div class="faq">
+<b>▶ समस्या होने पर क्या करें?</b><br>
+नीचे अपनी समस्या लिखकर Submit दबाएँ।
+</div>
+
+</div>
+
+<div class="card">
+<h2>💬 अपनी समस्या</h2>
+
+<textarea id="msg" placeholder="यहाँ अपनी समस्या लिखें"></textarea>
+
+<button onclick="sendHelp()">Submit</button>
+
+<button onclick="location.href='./'">← Home</button>
+
+</div>
+
+</div>
+
+<script>
+function sendHelp(){
+  const msg=document.getElementById('msg').value.trim();
+
+  if(!msg){
+    alert('कृपया अपनी समस्या लिखें');
+    return;
+  }
+
+  alert('आपकी समस्या दर्ज हो गई है।');
+  document.getElementById('msg').value='';
+}
+</script>
+
+</body>
+</html>
