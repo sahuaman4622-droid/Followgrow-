@@ -37,5 +37,21 @@ function clearDemoOrders(){if(confirm("Clear all demo orders?")){S.orders=[];sav
 function saveAdminAll(){let np=document.getElementById('newpass').value,cp=document.getElementById('confpass').value;if(np&&np!==cp)return toast('Password confirm नहीं है');let ss={};document.querySelectorAll('#serviceSettings [data-k]').forEach(e=>{let k=e.dataset.k.split('|'),key=k[0]+'|'+k[1];ss[key]=ss[key]||{on:true,rate:50,provider:''};if(k[2]==='rate')ss[key].rate=Number(e.value||0);if(k[2]==='provider')ss[key].provider=e.value;if(k[2]==='on')ss[key].on=e.checked});S.settings={upi:document.getElementById('upiid').value.trim(),payee:document.getElementById('payee').value.trim(),gateway:document.getElementById('gateway').value,webhook:document.getElementById('webhook').value,upiEnabled:document.getElementById('upien').checked,qrEnabled:document.getElementById('qren').checked,verifyPayment:document.getElementById('pven').checked,minFund:Number(document.getElementById('minfund').value||50),maxFund:Number(document.getElementById('maxfund').value||2000),autoCredit:document.getElementById('autocredit').checked,minQty:Number(document.getElementById('minqty').value||50),maxQty:Number(document.getElementById('maxqty').value||10000),autoSubmit:document.getElementById('autosubmit').checked,autoSync:document.getElementById('autosync').checked,syncInterval:Number(document.getElementById('syncint').value||30),retry:Number(document.getElementById('retry').value||3),apiStatus:document.getElementById('apistatus').value,mapping:document.getElementById('mapping').value,maintenance:document.getElementById('maint').checked,support:document.getElementById('supporten').checked,ordersEnabled:document.getElementById('ordersen').checked,demoBanner:document.getElementById('demobanner').checked,serviceSettings:ss};S.rate=Number(document.getElementById('ar').value||50);if(np)S.adminPass=np;save();hide('adminmodal');toast('All admin settings saved')}
 function resetAdminDemo(){if(confirm('Reset all demo settings?')){S={wallet:0,orders:[],tx:[],rate:50,adminPass:'admin123',settings:{}};save();hide('adminmodal');toast('Demo reset')}}
 function openUPI(app){let a=Number(document.getElementById('qa').textContent.replace(/[^0-9.]/g,''))||0;let url='upi://pay?pa=amanbinda96@nyes&pn=AMAN%20KUMAR%20SAHU%20SO%20BINDA&am='+a.toFixed(2)+'&cu=INR';try{window.location.href=url}catch(e){toast(app+' UPI app open नहीं हुआ')}}function saveAdmin(){S.rate=Number(document.getElementById('ar').value||50);save();hide('adminmodal');toast('Settings saved')}
-let tapCount=0,tapTimer=null;document.getElementById('logoTap').addEventListener('click',function(){tapCount++;clearTimeout(tapTimer);if(tapCount===5){tapCount=0;admin();return}tapTimer=setTimeout(()=>tapCount=0,1400)});render();
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function downloadApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function() {
+      deferredPrompt = null;
+    });
+  } else {
+    alert("Chrome menu (⋮) खोलकर Install app चुनें");
+  }
+  }let tapCount=0,tapTimer=null;document.getElementById('logoTap').addEventListener('click',function(){tapCount++;clearTimeout(tapTimer);if(tapCount===5){tapCount=0;admin();return}tapTimer=setTimeout(()=>tapCount=0,1400)});render();
 </script></body></html>
